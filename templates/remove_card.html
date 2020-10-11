@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Remove Card{% endblock %}
+{% block content%}
+    <h1>Remove Flash Card</h1>
+    Question: {{ card.question }} <br>
+    Answer:   {{ card.answer }}
+
+    <h2>Are you sure?</h2>
+    <form method="post">
+        <button type="submit">Yes</button>
+        <a href="{{ url_for('welcome') }}">No</a>
+    </form>
+    <a href="{{ url_for('welcome') }}">Home Page</a>
+    <button>
+        {% if index > 0 %}
+        <a href= "{{ url_for('remove_card', index=index - 1) }}" >
+            Previous card
+        </a>
+        {% else %}
+        <a href= "{{ url_for('remove_card', index=max_index) }}" >
+            Next card
+        </a>
+        {% endif %}
+    </button>
+
+    <button>
+        {% if index < max_index %}
+        <a href= "{{ url_for('remove_card', index=index + 1) }}" >
+            Next card
+        </a>
+        {% else %}
+        <a href= "{{ url_for('remove_card', index=0) }}" >
+            Next card
+        </a>
+        {% endif %}
+    </button>
+{% endblock %}
